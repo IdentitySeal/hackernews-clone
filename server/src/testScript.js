@@ -29,8 +29,8 @@ async function main() {
     //     userId:1
     //   } 
     // },
-    skip:1,
-    take:1
+    // skip:1,
+    // take:1
   }) 
 
 

@@ -14,15 +14,22 @@ export interface SignUpProps {
 export type Arr = {launches : any[]}
   
 
-
-
 export interface IObjectMap {
     [key: string | number]: any
 }
 
-export interface ILinkProps {    
+export interface ILinkProps {  
+    id:number
+    index:number  
     url:string
     description :string
-    // createdAt: Date
+    createdAt: Date
+    votes ?:number
+    postedBy:IObjectMap
+
 }
 
+export interface ITimeDifference {
+    current : number
+    previous : number
+}

@@ -6,17 +6,17 @@ const { getUserId } = require("./utils");
 const Query = require ('./resolvers/Query')
 const Link = require ('./resolvers/Link')     
 const Mutation = require ('./resolvers/Mutation')
-const DateTime = require ('./resolvers/DateTime')
 const User = require ('./resolvers/User')
 const Vote = require ('./resolvers/Vote')
 const Subscription = require ('./resolvers/Subscription')
 
 
-const prisma = new PrismaClient();
-
+const prisma = new PrismaClient({
+  errorFormat: 'minimal'
+});
 const pubsub = new PubSub();
 
-const resolvers = { Query, Mutation , User , Link, Subscription,Vote,DateTime };
+const resolvers = { Query, Mutation , User , Link, Subscription,Vote };
 
 const server = new ApolloServer({
   typeDefs: fs.readFileSync(path.join(__dirname, "schema.graphql"), "utf-8"),

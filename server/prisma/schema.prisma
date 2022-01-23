@@ -16,7 +16,7 @@ model Link {
   url String
   postedById Int
   postedBy User? @relation(fields: [postedById], references: [id])
-  votes Vote[]
+  votes Vote[] 
 }
 
 model User {

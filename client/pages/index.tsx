@@ -6,10 +6,12 @@ import Link from "next/link";
 import Router from 'next/router'
 import { useEffect, useState } from "react";
 import { LinkHolder } from "../components/LinkHolder";
+import Links from "../components/Links";
 import { Arr, IObjectMap } from "../interfaces";
 import client from "../service/apollo-client";
 // import { getLink } from '../service/apollo-client'
 import styles from "../styles/Home.module.css";
+import utils from "../utils";
 import AUTH_TOKEN from "../utils";
 
 const Home = ({ links }: { links: IObjectMap }) => {
@@ -17,7 +19,7 @@ const Home = ({ links }: { links: IObjectMap }) => {
   const [state,setState] = useState<string | null>()
 
   useEffect(() => {
-    const authToken = localStorage.getItem(AUTH_TOKEN) || null
+    const authToken = localStorage.getItem(utils.AUTH_TOKEN) || null
     setState(authToken)
     return () => {
       state
@@ -44,7 +46,7 @@ const Home = ({ links }: { links: IObjectMap }) => {
             </li>
           )}
           {state ? (
-            <li onClick={()=> {localStorage.removeItem(AUTH_TOKEN); setState('');
+            <li onClick={()=> {localStorage.removeItem(utils.AUTH_TOKEN); setState('');
           
               Router.push('/')}}>
                 <a>Logout</a>
@@ -58,19 +60,7 @@ const Home = ({ links }: { links: IObjectMap }) => {
           )}
         </ul>
       </nav>
-
-      {links.map((item: IObjectMap) => {
-        return (
-          <div key={item.id}>
-            <LinkHolder
-              url={item.url}
-              description={item.description}
-              // postedBy={""}
-              // votes={""}
-            />
-          </div>
-        );
-      })}
+      <Links/>
     </div>
   );
 };
@@ -81,11 +71,21 @@ export async function getStaticProps() {
   const { data } = await client.query({
     query: gql`
       query Query {
-        feedData {
+        feedData{
+    id
+    description
+    url
+    createdAt
+    postedBy{
+      name
+    }
+    votes {
           id
-          description
-          url
+          user {
+            id
+          }
         }
+  }
       }
     `,
   });

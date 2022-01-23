@@ -2,6 +2,7 @@ import { gql, useMutation } from "@apollo/client";
 import { NextPage } from "next";
 import React, { ChangeEvent, useState } from "react";
 import { SignUpProps } from "../interfaces";
+import utils from "../utils";
 import AUTH_TOKEN from "../utils";
 
 // const SIGNUP_MUTATION = gql`
@@ -48,7 +49,7 @@ const SignUp: NextPage = () => {
         name: state.name,
       },
       onCompleted: ({ signup }) => {
-          localStorage.setItem(AUTH_TOKEN, signup.token);
+          localStorage.setItem(utils.AUTH_TOKEN, signup.token);
           // console.log(signup)
         }
     });

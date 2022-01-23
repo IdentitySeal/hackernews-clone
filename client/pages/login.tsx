@@ -5,6 +5,7 @@ import Router from 'next/router';
 
 import { LoginProps } from "../interfaces";
 import AUTH_TOKEN from "../utils";
+import utils from "../utils";
 
 const LOGIN_MUTATION = gql`
   mutation LoginMutation($email: String!, $password: String!) {
@@ -41,7 +42,7 @@ const Login: NextPage = () => {
         password: state.password,
       },
       onCompleted: ({ login }) => {
-        localStorage.setItem(AUTH_TOKEN, login.token);
+        localStorage.setItem(utils.AUTH_TOKEN, login.token);
         // console.log(login);
         Router.push('/')
       },
