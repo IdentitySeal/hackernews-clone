@@ -14,8 +14,7 @@ import styles from "../styles/Home.module.css";
 import utils from "../utils";
 import AUTH_TOKEN from "../utils";
 
-const Home = ({ links }: { links: IObjectMap }) => {
-  console.log(links);
+const Home = () => {
   const [state,setState] = useState<string | null>()
 
   useEffect(() => {
@@ -67,31 +66,3 @@ const Home = ({ links }: { links: IObjectMap }) => {
 
 export default Home;
 
-export async function getStaticProps() {
-  const { data } = await client.query({
-    query: gql`
-      query Query {
-        feedData{
-    id
-    description
-    url
-    createdAt
-    postedBy{
-      name
-    }
-    votes {
-          id
-          user {
-            id
-          }
-        }
-  }
-      }
-    `,
-  });
-  return {
-    props: {
-      links: data.feedData,
-    },
-  };
-}

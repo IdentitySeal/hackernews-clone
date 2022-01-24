@@ -26,6 +26,7 @@ export interface ILinkProps {
     createdAt: Date
     votes ?:number
     postedBy:IObjectMap
+    data:IObjectMap
 
 }
 

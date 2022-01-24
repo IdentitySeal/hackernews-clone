@@ -5,16 +5,7 @@ import { SignUpProps } from "../interfaces";
 import utils from "../utils";
 import AUTH_TOKEN from "../utils";
 
-// const SIGNUP_MUTATION = gql`
-//     mutation signUpMutation(
-//         $email: String!
-//         $password: String!
-//         $name:String!
-//       ) {
-//         signup(email: $email, password: $password ,name:$name ) {
-//           token
-//         }
-//       }`
+
 const SIGNUP_MUTATION = gql`
   mutation SignupMutation($email: String!, $password: String!, $name: String!) {
     signup(email: $email, password: $password, name: $name) {

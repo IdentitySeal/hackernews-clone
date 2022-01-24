@@ -29,7 +29,7 @@ type Link {
   url: String!
   createdAt: DateTime
   postedBy:User
-  votes:[Vote]
+  votes:[Vote!]!
 }
 
 type User {

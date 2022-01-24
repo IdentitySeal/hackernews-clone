@@ -71,6 +71,9 @@ const signup = async (parent, args, context, info) => {
 
 const vote = async (parent, args, context, info) => {
   const userId = context.userId
+
+  // console.log(userId)
+
   const vote = await context.prisma.vote.findUnique({
     where: {
       linkId_userId: {

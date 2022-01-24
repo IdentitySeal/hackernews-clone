@@ -12,8 +12,8 @@ const getUserId = (req, authToken) => {
   if (req) {
     const authHeader = req.headers.authorization;
     if (authHeader) {
-      console.log(req)
-      console.log(authHeader)
+      // console.log(req)
+      // console.log(authHeader)
       const token = authHeader.replace("Bearer ", "");
       if (!token) {
         throw new Error("No Token Found");

@@ -17,7 +17,7 @@ import { timeDifferenceForDate } from "../service/utils";
 const Links = () => {
   const { data, loading, error } = useQuery(FEED_QUERY);
   
-console.log(data && data.feedData[0])
+// console.log(data && data.feedData[0])
 
   const filterParams = {
     take: utils.LINKS_PER_PAGE,
@@ -37,6 +37,7 @@ console.log(data && data.feedData[0])
             <div key={item.id}>
               
               <LinkHolder
+              data={item}
               id={item.id}
               index={index + 1}
                 url={item.url}

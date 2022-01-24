@@ -1,10 +1,11 @@
 import { ApolloClient, NormalizedCacheObject, ApolloProvider, gql, InMemoryCache, createHttpLink, } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import utils from '../utils';
 import AUTH_TOKEN from '../utils';
 
 
 const authLink = setContext((_, { headers }) => {
-  const token :string|null = typeof window !== 'undefined' ? localStorage.getItem(AUTH_TOKEN) : null;
+  const token :string|null = typeof window !== 'undefined' ? localStorage.getItem(utils.AUTH_TOKEN) : null;
   return {
     headers: {
       ...headers,
@@ -30,12 +31,3 @@ const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   });
 
   export default client;
-
-//   import { ApolloClient, InMemoryCache } from "@apollo/client";
-
-// const client = new ApolloClient({
-//     uri: "https://countries.trevorblades.com",
-//     cache: new InMemoryCache(),
-// });
-
-// export default client;
