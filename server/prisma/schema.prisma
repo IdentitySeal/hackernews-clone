@@ -15,7 +15,7 @@ model Link {
   description String
   url String
   postedById Int
-  postedBy User? @relation(fields: [postedById], references: [id])
+  postedBy User @relation(fields: [postedById], references: [id])
   votes Vote[] 
 }
 
@@ -31,9 +31,9 @@ model User {
 model Vote {
   id Int @id @default(autoincrement())
   linkId Int
-  link Link? @relation(fields: [linkId],references:[id])
+  link Link @relation(fields: [linkId],references:[id])
   userId Int
-  user User? @relation(fields: [userId],references:[id])
+  user User @relation(fields: [userId],references:[id])
 
   @@unique([linkId,userId])
 }
